@@ -1,5 +1,5 @@
 import Head from "next/head";
-import { Flex } from "@chakra-ui/react";
+import { MenuCard } from "../../components/molecules/MenuCard";
 
 export default function Home() {
   return (
@@ -9,7 +9,9 @@ export default function Home() {
         <link rel="icon" />
       </Head>
       <div>
-
+        {/* dummy cards */}
+        <MenuCard label="Prevención" />
+        <MenuCard label="Prevención" />
       </div>
     </div>
   );
