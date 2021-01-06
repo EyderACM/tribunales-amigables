@@ -8,6 +8,7 @@ import {
   Button,
   Spacer,
 } from "@chakra-ui/react";
+import { Link } from "../components/atoms/Link";
 import { MenuCard } from "../components/molecules/MenuCard";
 
 export default function Home() {
@@ -21,7 +22,9 @@ export default function Home() {
         <Flex justify="space-between">
           <Avatar />
           <Heading>De Boca en Boca</Heading>
-          <Button colorScheme="blue">Entrar</Button>
+          <Button colorScheme="blue" as={Link} href="/login">
+            Entrar
+          </Button>
         </Flex>
         <Spacer />
         <Stack
