@@ -8,7 +8,7 @@ import {
   Button,
   Spacer,
 } from "@chakra-ui/react";
-import { MenuCard } from "../../components/molecules/MenuCard";
+import { MenuCard } from "../components/molecules/MenuCard";
 
 export default function Home() {
   return (
