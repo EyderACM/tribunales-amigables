@@ -4,7 +4,7 @@ import { Link } from "../components/atoms/Link";
 const Register = () => {
   return (
     <>
-      <Heading>Register</Heading>
+      <Heading>Registro</Heading>
       <Link href="/login">¿Ya tienes una cuenta? inicia sesión :)</Link>
     </>
   );
