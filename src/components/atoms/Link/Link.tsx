@@ -11,7 +11,7 @@ export const Link: FC<ChakraLinkProps> = ({
   ...restOfProps
 }) => {
   return (
-    <NextLink href={href ? href : "#"} passHref>
+    <NextLink href={href || "#"} passHref>
       <ChakraLink {...restOfProps}>{children}</ChakraLink>
     </NextLink>
   );
