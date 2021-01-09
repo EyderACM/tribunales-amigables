@@ -1,8 +1,13 @@
 import { FC } from "react";
 import { Button, Stack, Image } from "@chakra-ui/react";
-import { MenuCardProps } from "./MenuCardProps";
+import { ButtonProps } from "@chakra-ui/react";
 
-export const MenuCard: FC<MenuCardProps> = ({
+export interface IMenuCard extends ButtonProps {
+  label: string;
+  imageSrc?: string;
+}
+
+export const MenuCard: FC<IMenuCard> = ({
   label,
   imageSrc,
   ...buttonProps
