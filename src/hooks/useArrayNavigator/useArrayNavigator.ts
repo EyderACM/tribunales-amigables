@@ -6,11 +6,27 @@ export const useArrayNavigator = <T>(
 ) => {
   const [currentIndex, setCurrentIndex] = useState(initialIndexValue || 0);
   const [currentValue, setCurrentValue] = useState<T>(array[currentIndex]);
+  const [isInFirstElement, setIsInFirstElement] = useState(true);
+  const [isInLastElement, setIsInLastElement] = useState(false);
 
   useEffect(() => {
     if (array.length) {
       const newValue = array[currentIndex];
       setCurrentValue(newValue);
+    }
+
+    const inFirsElement = currentIndex === 0;
+    if (inFirsElement) {
+      setIsInFirstElement(true);
+    } else {
+      setIsInFirstElement(false);
+    }
+
+    const inLastElement = currentIndex === array.length - 1;
+    if (inLastElement) {
+      setIsInLastElement(true);
+    } else {
+      setIsInLastElement(false);
     }
   }, [currentIndex]);
 
@@ -36,5 +52,7 @@ export const useArrayNavigator = <T>(
     currentIndex,
     changeToNextValue,
     changeToPreviusValue,
+    isInFirstElement,
+    isInLastElement,
   };
 };
