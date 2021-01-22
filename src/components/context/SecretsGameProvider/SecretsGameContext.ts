@@ -5,6 +5,7 @@ export interface ISecretsGameContext {
   currentQuestion: IBinaryQuestion;
   changeToNextQuestion: () => void;
   changeToPreviusQuestion: () => void;
+  onAnswerSelected: (userAnswer: string) => void;
 }
 
 const defaultContextValue: ISecretsGameContext = {
@@ -17,6 +18,7 @@ const defaultContextValue: ISecretsGameContext = {
   },
   changeToNextQuestion: () => {},
   changeToPreviusQuestion: () => {},
+  onAnswerSelected: (userAnswer: string) => {},
 };
 
 export const SecretsGameContext = createContext<ISecretsGameContext>(
