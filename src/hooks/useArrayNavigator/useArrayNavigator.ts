@@ -3,14 +3,7 @@ import { useState, useEffect } from "react";
 export const useArrayNavigator = <T>(
   array: T[],
   initialIndexValue?: number
-): [
-    T,
-    () => void,
-    () => void,
-    boolean,
-    boolean,
-    number
-] => {
+): [T, number, () => void, () => void, boolean, boolean] => {
   const [currentIndex, setCurrentIndex] = useState(initialIndexValue || 0);
   const [currentValue, setCurrentValue] = useState<T>(array[currentIndex]);
   const [isInFirstElement, setIsInFirstElement] = useState(true);
@@ -56,10 +49,10 @@ export const useArrayNavigator = <T>(
 
   return [
     currentValue,
+    currentIndex,
     changeToPreviusValue,
     changeToNextValue,
     isInFirstElement,
     isInLastElement,
-    currentIndex,
   ];
 };
