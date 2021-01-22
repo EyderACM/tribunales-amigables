@@ -23,14 +23,12 @@ export const GameInstructions = ({ data, url }: IgameInstruction) => {
     setSectionInformation(data.descriptions[index]);
   }, [index]);
 
-  //modificar estado del label y párrafo del componente
   const previousInstruction = () => {
     if (index > 0) {
       setIndex(index - 1);
     }
   };
 
-  //Después de iguala las instrucciones redirige hacia el juego
   const nextInstruction = () => {
     if (index < data.descriptions.length - 1) {
       setIndex(index + 1);
