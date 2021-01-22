@@ -12,16 +12,16 @@ export const SecretsGameProvider: FC<ISecretsGameProvider> = ({
   children,
 }) => {
   const { questions } = useBinaryQuestions(initialQuestionsData);
-  const {
-    currentValue,
-    changeToNextValue,
-    changeToPreviusValue,
-  } = useArrayNavigator<IBinaryQuestion>(questions);
+  const [
+    currentQuestion,
+    changeToPreviusQuestion,
+    changeToNextQuestion,
+  ] = useArrayNavigator<IBinaryQuestion>(questions);
 
   const providerValue: ISecretsGameContext = {
-    currentQuestion: currentValue,
-    changeToNextQuestion: changeToNextValue,
-    changeToPreviusQuestion: changeToPreviusValue,
+    currentQuestion,
+    changeToNextQuestion,
+    changeToPreviusQuestion,
   };
 
   return (
