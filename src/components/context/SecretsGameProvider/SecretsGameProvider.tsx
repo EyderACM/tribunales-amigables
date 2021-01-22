@@ -1,4 +1,5 @@
-import { FC, useEffect } from "react";
+import { FC } from "react";
+import useSound from "use-sound";
 import { ISecretsGameContext, SecretsGameContext } from "./SecretsGameContext";
 import IBinaryQuestion from "src/interfaces/IBinaryQuestion";
 import { useArrayNavigator, useBinaryQuestions } from "src/hooks";
@@ -20,9 +21,10 @@ export const SecretsGameProvider: FC<ISecretsGameProvider> = ({
     changeToPreviusQuestion,
     changeToNextQuestion,
   ] = useArrayNavigator<IBinaryQuestion>(questions);
+  const [playCorrectAnswerSound] = useSound("/sounds/correct-answer.mp3");
 
   const handleCorrectAnswer = () => {
-    console.log("correct answer sound");
+    playCorrectAnswerSound();
   };
 
   const handleIncorrectAnswer = () => {
