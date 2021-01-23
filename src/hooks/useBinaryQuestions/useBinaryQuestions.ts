@@ -1,8 +1,23 @@
 import { useState, useEffect } from "react";
-import IBinaryQuestion from "src/interfaces/IBinaryQuestion";
+import IBinaryQuestion from "interfaces/IBinaryQuestion";
 import generateResultsData from "./generateResultsData";
+import IBinaryQuestionResult from "interfaces/IBinaryQuestionResult";
 
-export const useBinaryQuestions = (initialQuestionsData: IBinaryQuestion[]) => {
+interface IQuestionIndexAnswer {
+  questionIndex: number;
+  answer: string;
+}
+
+interface IUseBinaryQuestionsReturn {
+  questions: IBinaryQuestion[];
+  results: IBinaryQuestionResult[];
+  checkIfAnswerIsCorrect: (params: IQuestionIndexAnswer) => boolean;
+  saveAnswer: (params: IQuestionIndexAnswer) => void;
+}
+
+export const useBinaryQuestions = (
+  initialQuestionsData: IBinaryQuestion[]
+): IUseBinaryQuestionsReturn => {
   const [questions, setQuestions] = useState(initialQuestionsData);
   const [results, setResults] = useState([]);
 
@@ -11,13 +26,7 @@ export const useBinaryQuestions = (initialQuestionsData: IBinaryQuestion[]) => {
     setResults(initialResultsData);
   }, [questions]);
 
-  const saveAnswer = ({
-    questionIndex,
-    answer,
-  }: {
-    questionIndex: number;
-    answer: string;
-  }) => {
+  const saveAnswer = ({ questionIndex, answer }: IQuestionIndexAnswer) => {
     const updatedQuestionsData = questions.map((question, currentIndex) => {
       if (currentIndex === questionIndex) {
         const answerWasCorrect = checkIfAnswerIsCorrect({
@@ -41,10 +50,7 @@ export const useBinaryQuestions = (initialQuestionsData: IBinaryQuestion[]) => {
   const checkIfAnswerIsCorrect = ({
     questionIndex,
     answer,
-  }: {
-    questionIndex: number;
-    answer: string;
-  }): boolean => {
+  }: IQuestionIndexAnswer): boolean => {
     const question = questions[questionIndex];
 
     if (question.correctAnswer === answer) {

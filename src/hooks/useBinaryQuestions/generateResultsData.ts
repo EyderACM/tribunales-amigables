@@ -1,5 +1,5 @@
-import IBinaryQuestion from "src/interfaces/IBinaryQuestion";
-import IBinaryQuestionResult from "src/interfaces/IBinaryQuestionResult";
+import IBinaryQuestion from "interfaces/IBinaryQuestion";
+import IBinaryQuestionResult from "interfaces/IBinaryQuestionResult";
 
 const generateResultsData = (questionsData: IBinaryQuestion[]) => {
   const resultsData: IBinaryQuestionResult[] = questionsData.map(
