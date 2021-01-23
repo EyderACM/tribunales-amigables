@@ -1,27 +1,13 @@
-import { FC } from "react";
 import { Button, Stack, Image } from "@chakra-ui/react";
 import { ButtonProps } from "@chakra-ui/react";
+import { MenuCardImage, IMenuCardImage } from "../../atoms/MenuCard";
 
-export interface IMenuCard extends ButtonProps {
-  label: string;
-  imageSrc?: string;
-}
+export interface IMenuCard extends ButtonProps, IMenuCardImage {}
 
-export const MenuCard: FC<IMenuCard> = ({
-  label,
-  imageSrc,
-  ...buttonProps
-}) => {
+export const MenuCard = ({ label, imageSrc, ...buttonProps }: IMenuCard) => {
   return (
     <Stack width="fit-content" spacing="15px" maxWidth="150px">
-      <Image
-        boxSize="150px"
-        objectFit="cover"
-        borderRadius="full"
-        src={imageSrc}
-        alt={label}
-        fallbackSrc="https://via.placeholder.com/150"
-      />
+      <MenuCardImage label={label} imageSrc={imageSrc} />
       <Button
         colorScheme="blue"
         whiteSpace="normal"
