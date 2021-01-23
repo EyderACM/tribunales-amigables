@@ -4,7 +4,7 @@ interface IUseGameFlow {
   showInstructions?: boolean;
 }
 
-export const useGameFlow = ({ showInstructions = true }: IUseGameFlow) => {
+export const useGameFlow = ({ showInstructions = true }: IUseGameFlow = {}) => {
   const [inInstructionView, setInInstructionView] = useState(showInstructions);
   const [inGameView, setInGameView] = useState(showInstructions ? false : true);
   const [inResultsView, setInResultsView] = useState(false);
