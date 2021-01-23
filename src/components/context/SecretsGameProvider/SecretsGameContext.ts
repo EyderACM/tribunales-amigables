@@ -1,26 +1,18 @@
 import { createContext } from "react";
-import IBinaryQuestion from "src/interfaces/IBinaryQuestion";
+import IBinaryQuestion from "interfaces/IBinaryQuestion";
+import IBinaryQuestionResult from "interfaces/IBinaryQuestionResult";
 
 export interface ISecretsGameContext {
   currentQuestion: IBinaryQuestion;
   changeToNextQuestion: () => void;
   changeToPreviusQuestion: () => void;
   onAnswerSelected: (userAnswer: string) => void;
+  correctCheckIsShowing: boolean;
+  results: IBinaryQuestionResult[];
+  isInFirstQuestion: boolean;
+  isInLastQuestion: boolean;
 }
 
-const defaultContextValue: ISecretsGameContext = {
-  currentQuestion: {
-    description: "",
-    correctAnswer: "correct answer",
-    incorrectAnswer: "incorrect answer",
-    isAnswered: false,
-    answerWasCorrect: false,
-  },
-  changeToNextQuestion: () => {},
-  changeToPreviusQuestion: () => {},
-  onAnswerSelected: (userAnswer: string) => {},
-};
-
 export const SecretsGameContext = createContext<ISecretsGameContext>(
-  defaultContextValue
+  {} as ISecretsGameContext
 );
