@@ -79,6 +79,7 @@ export const SecretsGameProvider: FC<ISecretsGameProvider> = ({
     results,
     isInFirstQuestion,
     isInLastQuestion,
+    changeToResultsView,
   };
 
   return (

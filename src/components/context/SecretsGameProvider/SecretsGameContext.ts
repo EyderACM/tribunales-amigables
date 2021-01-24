@@ -11,6 +11,7 @@ export interface ISecretsGameContext {
   results: IBinaryQuestionResult[];
   isInFirstQuestion: boolean;
   isInLastQuestion: boolean;
+  changeToResultsView: () => void;
 }
 
 export const SecretsGameContext = createContext<ISecretsGameContext>(
