@@ -12,6 +12,7 @@ import {
 import { SecretsGameContext } from "components/context/SecretsGameProvider";
 import { GameHeader } from "components/molecules/GameHeader";
 import { ClickableImage } from "components/atoms/ClickableImage";
+import { FadeInOutImage } from "components/atoms/FadeInOutImage";
 
 export const SecretsGameView = () => {
   const {
@@ -56,18 +57,10 @@ export const SecretsGameView = () => {
           </Button>
         </Grid>
       </Grid>
-      <Center
-        w="100%"
-        h="100vh"
-        position="absolute"
-        zIndex={5}
-        top="0px"
-        display={correctCheckIsShowing ? "grid" : "none"}
-      >
-        <ScaleFade initialScale={0.9} in={correctCheckIsShowing}>
-          <Image src="/images/correct-answer.svg" boxSize="70%" />
-        </ScaleFade>
-      </Center>
+      <FadeInOutImage
+        src="/images/correct-answer.svg"
+        show={correctCheckIsShowing}
+      />
     </>
   );
 };
