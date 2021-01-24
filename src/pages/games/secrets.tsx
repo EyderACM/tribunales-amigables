@@ -1,10 +1,10 @@
 import { When } from "react-if";
-import { Heading } from "@chakra-ui/react";
 import { SecretsGameProvider } from "components/context/SecretsGameProvider";
 import { SecretsGameView } from "components/organisms/SecretsGameView";
 import { GameInstructions } from "components/organisms/GameInstructions";
 import { useGameFlow } from "hooks";
 import { testQuestionsData, testInstructionsData } from "testData";
+import { SecretsGameResults } from "components/organisms/SecretsGameResults";
 
 const Secrets = () => {
   const {
@@ -30,7 +30,7 @@ const Secrets = () => {
         <SecretsGameView />
       </When>
       <When condition={inResultsView}>
-        <Heading>Results</Heading>
+        <SecretsGameResults />
       </When>
     </SecretsGameProvider>
   );
