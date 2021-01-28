@@ -32,14 +32,17 @@ export const SecretsGameProvider: FC<ISecretsGameProvider> = ({
   const [playCorrectAnswerSound] = useSound("/sounds/correct-answer.mp3");
   const { isOpen, onOpen, onClose } = useDisclosure();
 
-  const handleCorrectAnswer = () => {
-    playCorrectAnswerSound();
-    onOpen();
-
+  const closeCheckAfterOneSecond = () => {
     const showInterval = setInterval(() => {
       onClose();
       clearInterval(showInterval);
     }, 1000);
+  }
+
+  const handleCorrectAnswer = () => {
+    playCorrectAnswerSound();
+    onOpen();
+    closeCheckAfterOneSecond();
   };
 
   const handleIncorrectAnswer = () => {
