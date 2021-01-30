@@ -6,12 +6,12 @@ export interface IMenuCard extends ButtonProps, IMenuCardImage {}
 
 export const MenuCard = ({ label, imageSrc, ...buttonProps }: IMenuCard) => {
   return (
-    <Stack width="fit-content" spacing="15px" maxWidth="150px">
+    <Stack width="fit-content" spacing="15px" maxWidth="150px" height="100%">
       <MenuCardImage label={label} imageSrc={imageSrc} />
       <Button
         colorScheme="blue"
         whiteSpace="normal"
-        height="auto"
+        height="100%"
         pt="0.5rem"
         pb="0.5rem"
         {...buttonProps}
