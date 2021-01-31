@@ -4,7 +4,6 @@ import {
   Grid,
   Flex,
   Stack,
-  Avatar,
   Heading,
   Button,
   Spacer,
