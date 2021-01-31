@@ -23,7 +23,7 @@ export default function Home() {
       </Head>
       <Grid h="100vh" templateRows="auto 10px 1fr 10px auto" p="20px">
         <Flex justify="space-between">
-          <Avatar />
+          <Avatar src="/images/logo.png"/>
           <Heading>De Boca en Boca</Heading>
           <Button colorScheme="blue" as={Link} href="/login">
             Entrar

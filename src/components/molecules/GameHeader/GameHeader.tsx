@@ -10,7 +10,7 @@ export const GameHeader = ({ gameName }: IGameHeader) => {
       <Center position="relative" top="10px">
         <Heading>Secretos</Heading>
       </Center>
-      <Avatar left="10px" bottom="30px" />
+      <Avatar left="10px" bottom="30px" src="/images/logo.png"/>
     </Box>
   );
 };
