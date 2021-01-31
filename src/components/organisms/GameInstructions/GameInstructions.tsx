@@ -5,12 +5,15 @@ import { Avatar, Heading, Button, Box, Center, Stack } from "@chakra-ui/react";
 import { useRouter } from "next/router";
 import colors from "./GameInstructionsColors";
 
-interface IgameInstruction {
+interface IGameInstructions {
   data: { titles: string[]; descriptions: string[] };
-  url: string;
+  changeToGameView: () => void;
 }
 
-export const GameInstructions = ({ data, url }: IgameInstruction) => {
+export const GameInstructions = ({
+  data,
+  changeToGameView,
+}: IGameInstructions) => {
   const router = useRouter();
   const [index, setIndex] = useState<number>(0);
   const [title, setSectionTitle] = useState(data.titles[index]);
@@ -33,12 +36,8 @@ export const GameInstructions = ({ data, url }: IgameInstruction) => {
     if (index < data.descriptions.length - 1) {
       setIndex(index + 1);
     } else {
-      router.push(url);
+      changeToGameView();
     }
-  };
-
-  const skipInstruction = () => {
-    router.push(url);
   };
 
   return (
@@ -70,7 +69,7 @@ export const GameInstructions = ({ data, url }: IgameInstruction) => {
           <Button
             bg={colors.CALM_WATER}
             fontWeight="Regular"
-            onClick={skipInstruction}
+            onClick={changeToGameView}
           >
             Saltar Explicación
           </Button>
