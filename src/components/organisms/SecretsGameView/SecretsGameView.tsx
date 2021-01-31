@@ -39,9 +39,13 @@ export const SecretsGameView = () => {
             wrap="wrap"
           >
             <ClickableImage
+              src="/images/contar_secreto.png"
+              alt="contar secreto"
               onClick={() => onAnswerSelected("secreto malo")}
             />
             <ClickableImage
+              src="/images/guardar_secreto.png"
+              alt="guardar secreto"
               onClick={() => onAnswerSelected("secreto bueno")}
             />
           </Stack>

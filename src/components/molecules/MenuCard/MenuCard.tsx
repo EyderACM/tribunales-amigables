@@ -1,6 +1,6 @@
-import { Button, Stack, Image } from "@chakra-ui/react";
+import { Button, Stack } from "@chakra-ui/react";
 import { ButtonProps } from "@chakra-ui/react";
-import { MenuCardImage, IMenuCardImage } from "../../atoms/MenuCard";
+import { MenuCardImage, IMenuCardImage } from "components/atoms/MenuCard";
 
 export interface IMenuCard extends ButtonProps, IMenuCardImage {}
 

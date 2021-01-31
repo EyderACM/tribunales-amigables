@@ -32,9 +32,13 @@ export default function Prevention() {
             align="center"
             wrap="wrap"
           >
-            <MenuCard label="Secretos" onClick={() => router.push("/games/secrets")}/>
-            <MenuCard label="Partes del Cuerpo" />
-            <MenuCard label="Personas de Confianza" />
+            <MenuCard
+              label="Secretos"
+              onClick={() => router.push("/games/secrets")}
+              imageSrc="/images/secretos.png"
+            />
+            <MenuCard label="Partes del Cuerpo" imageSrc="/images/partes_del_cuerpo.png"/>
+            <MenuCard label="Personas de Confianza" imageSrc="/images/personas_de_confianza.png"/>
           </Stack>
         </Stack>
         <Spacer />
