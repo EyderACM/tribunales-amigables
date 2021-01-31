@@ -53,7 +53,7 @@ export const useBinaryQuestions = (
   }: IQuestionIndexAnswer): boolean => {
     const question = questions[questionIndex];
 
-    if (question.correctAnswer === answer) {
+    if (question.answer === answer) {
       return true;
     }
 

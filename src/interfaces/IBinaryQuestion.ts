@@ -1,7 +1,7 @@
 export default interface IBinaryQuestion {
-  description: string;
-  correctAnswer: string;
-  incorrectAnswer: string;
-  isAnswered: boolean;
-  answerWasCorrect: boolean;
+  id: number;
+  question: string;
+  answer: string;
+  createdAt: string;
+  updatedAt: string;
 }

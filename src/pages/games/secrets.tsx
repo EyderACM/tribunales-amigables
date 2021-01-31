@@ -1,12 +1,18 @@
+import { GetServerSideProps } from 'next'
 import { When } from "react-if";
 import { SecretsGameProvider } from "components/context/SecretsGameProvider";
 import { SecretsGameView } from "components/organisms/SecretsGameView";
 import { GameInstructions } from "components/organisms/GameInstructions";
 import { useGameFlow } from "hooks";
-import { testQuestionsData, testInstructionsData } from "testData";
+import { testInstructionsData } from "testData";
 import { SecretsGameResults } from "components/organisms/SecretsGameResults";
+import IBinaryQuestion from 'interfaces/IBinaryQuestion';
 
-const Secrets = () => {
+interface ISecrets {
+  questions: IBinaryQuestion[];
+}
+
+const Secrets = ({questions}: ISecrets) => {
   const {
     changeToGameView,
     changeToResultsView,
@@ -17,7 +23,7 @@ const Secrets = () => {
 
   return (
     <SecretsGameProvider
-      initialQuestionsData={testQuestionsData}
+      initialQuestionsData={questions}
       changeToResultsView={changeToResultsView}
     >
       <When condition={inInstructionView}>
@@ -37,3 +43,10 @@ const Secrets = () => {
 };
 
 export default Secrets;
+
+export const getServerSideProps: GetServerSideProps = async () => {
+  const questionsJSON = await fetch("https://limitless-atoll-83464.herokuapp.com/api/questions/secrets")
+  const questions = await questionsJSON.json();
+
+  return { props: { questions } }
+}

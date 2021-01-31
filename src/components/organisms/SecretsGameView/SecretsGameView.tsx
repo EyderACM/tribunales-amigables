@@ -29,7 +29,7 @@ export const SecretsGameView = () => {
         <Spacer />
         <Stack spacing="40px" align="center">
           <Text fontSize="xl" textAlign="center" maxWidth="500px">
-            {currentQuestion.description}
+            {currentQuestion.question}
           </Text>
           <Stack
             direction="row"
@@ -39,10 +39,10 @@ export const SecretsGameView = () => {
             wrap="wrap"
           >
             <ClickableImage
-              onClick={() => onAnswerSelected(currentQuestion.incorrectAnswer)}
+              onClick={() => onAnswerSelected("secreto malo")}
             />
             <ClickableImage
-              onClick={() => onAnswerSelected(currentQuestion.correctAnswer)}
+              onClick={() => onAnswerSelected("secreto bueno")}
             />
           </Stack>
         </Stack>
