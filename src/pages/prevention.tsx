@@ -4,15 +4,13 @@ import {
   Grid,
   Flex,
   Stack,
-  Avatar,
   Heading,
   Button,
   Spacer,
 } from "@chakra-ui/react";
-import { Link } from "../components/atoms/Link";
 import { MenuCard } from "../components/molecules/MenuCard";
 
-export default function Home() {
+export default function Prevention() {
   const router = useRouter();
 
   return (
@@ -22,12 +20,8 @@ export default function Home() {
         <link rel="icon" />
       </Head>
       <Grid h="100vh" templateRows="auto 10px 1fr 10px auto" p="20px">
-        <Flex justify="space-between">
-          <Avatar />
-          <Heading>De Boca en Boca</Heading>
-          <Button colorScheme="blue" as={Link} href="/login">
-            Entrar
-          </Button>
+        <Flex justify="center">
+          <Heading>Prevención</Heading>
         </Flex>
         <Spacer />
         <Stack justify="center" align="center">
@@ -38,14 +32,15 @@ export default function Home() {
             align="center"
             wrap="wrap"
           >
-            <MenuCard label="Prevención" onClick={() => router.push("/prevention")} />
-            <MenuCard label="Cultura Legal" />
+            <MenuCard label="Secretos" onClick={() => router.push("/games/secrets")}/>
+            <MenuCard label="Partes del Cuerpo" />
+            <MenuCard label="Personas de Confianza" />
           </Stack>
         </Stack>
         <Spacer />
         <Grid placeItems="center">
-          <Button colorScheme="green" w="fit-content">
-            Acerca del programa
+          <Button colorScheme="green" w="fit-content" onClick={() => router.push("/")}>
+            Regresar
           </Button>
         </Grid>
       </Grid>
