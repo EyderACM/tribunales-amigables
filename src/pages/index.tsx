@@ -41,8 +41,12 @@ export default function Home() {
                 align="center"
                 wrap="wrap"
               >
-                <MenuCard label="Prevención" onClick={() => router.push("/prevention")} />
-                <MenuCard label="Cultura Legal" />
+                <MenuCard
+                  imageSrc="/images/prevencion.png" 
+                  label="Prevención"
+                  onClick={() => router.push("/prevention")}
+                />
+                <MenuCard imageSrc="/images/cultura_legal.png" label="Cultura Legal" />
               </Stack>
             </Stack>
             <Spacer />
