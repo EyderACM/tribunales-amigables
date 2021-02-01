@@ -1,4 +1,11 @@
-import { useToast as useChakraToast } from "@chakra-ui/react";
+import { useToast as useChakraToast, UseToastOptions } from "@chakra-ui/react";
+
+const toastBaseConfig = (message): UseToastOptions => ({
+  duration: 6000,
+  isClosable: true,
+  position: "top-right",
+  description: message,
+});
 
 function useToast() {
   const toast = useChakraToast();
@@ -6,11 +13,8 @@ function useToast() {
   const callAlertToast = (message = "Algo ha sucedido") => {
     return toast({
       title: "Solicitud fallida",
-      description: message,
       status: "error",
-      duration: 6000,
-      isClosable: true,
-      position: "top-right",
+      ...toastBaseConfig(message),
     });
   };
 
@@ -19,9 +23,7 @@ function useToast() {
       title: "Solicitud exitosa",
       description: message,
       status: "success",
-      duration: 6000,
-      isClosable: true,
-      position: "top-right",
+      ...toastBaseConfig(message),
     });
   };
 
