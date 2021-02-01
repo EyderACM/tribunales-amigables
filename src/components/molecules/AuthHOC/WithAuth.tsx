@@ -1,13 +1,13 @@
-import useUserAuth from "hooks/useUserAuth/useUserAuth";
+import { useEffect } from "react";
 import { useRouter } from "next/router";
-import React, { useEffect } from "react";
+import useUserAuth from "hooks/useUserAuth/useUserAuth";
 
-const WithAuth = (component, toRoute = "/") => {
+const WithAuth = ({component, toRoute = "/"}) => {
   const [userToken] = useUserAuth();
   const router = useRouter();
 
   useEffect(() => {
-    if (!userToken || userToken === "") router.push(toRoute);
+    if (!userToken) router.push(toRoute);
   }, []);
 
   return component;

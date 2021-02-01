@@ -1,4 +1,4 @@
-import React from "react";
+import { useState, useEffect } from "react";
 import { useRouter } from 'next/router'
 import Head from "next/head";
 import {
@@ -14,16 +14,23 @@ import { Link } from "../components/atoms/Link";
 import { MenuCard } from "../components/molecules/MenuCard";
 import { motion, AnimatePresence } from "framer-motion";
 import useUserAuth from "hooks/useUserAuth/useUserAuth";
-import { Else, If, Then } from "react-if";
 
 export default function Home() {
   const [userToken, setUserToken] = useUserAuth();
+  const [userIsLoggedIn, setUserIsLoggedIn] = useState(undefined);
   const router = useRouter();
+
+  useEffect(() => {
+    if (userToken) {
+      setUserIsLoggedIn(true);
+    } else {
+      setUserIsLoggedIn(false);
+    }
+
+  }, [userToken])
 
   const logoutUser = () => {
     setUserToken({ token: "" });
-    console.log(userToken);
-    //router.reload();
   };
 
   return (
@@ -38,18 +45,15 @@ export default function Home() {
             <Flex justify="space-between">
               <Avatar src="/images/logo.png"/>
               <Heading>De Boca en Boca</Heading>
-              <If condition={userToken !== "" || userToken === undefined}>
-                <Then>
-                  <Button colorScheme="red" as={Link} onClick={logoutUser}>
-                    Cerrar Sesión
-                  </Button>
-                </Then>
-                <Else>
-                  <Button colorScheme="blue" as={Link} href="/login">
-                    Entrar
-                  </Button>
-                </Else>
-              </If>
+              {userIsLoggedIn ? (
+                <Button colorScheme="red" as={Link} onClick={logoutUser}>
+                  Cerrar Sesión
+                </Button>
+              ) : (
+                <Button colorScheme="blue" as={Link} href="/login">
+                  Entrar
+                </Button>  
+              )}
             </Flex>
             <Spacer />
             <Stack justify="center" align="center">

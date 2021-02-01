@@ -4,6 +4,11 @@ import { useDisclosure } from "@chakra-ui/react";
 import { ISecretsGameContext, SecretsGameContext } from "./SecretsGameContext";
 import IBinaryQuestion from "interfaces/IBinaryQuestion";
 import { useArrayNavigator, useBinaryQuestions } from "hooks";
+import { secretsGameService } from "services/secretsGameService";
+import { IUserSecretsGameAnswer } from "models/userSecretsGameAnswer";
+import useUserAuth from "hooks/useUserAuth/useUserAuth";
+
+const gameService = secretsGameService();
 
 interface ISecretsGameProvider {
   initialQuestionsData: IBinaryQuestion[];
@@ -31,6 +36,21 @@ export const SecretsGameProvider: FC<ISecretsGameProvider> = ({
   ] = useArrayNavigator<IBinaryQuestion>(questions);
   const [playCorrectAnswerSound] = useSound("/sounds/correct-answer.mp3");
   const { isOpen, onOpen, onClose } = useDisclosure();
+  const [userToken] = useUserAuth();
+
+  const changeToResultsViewAndPostResults = () => {
+    const userAnswers: IUserSecretsGameAnswer[] = results.map(result => ({
+      question_id: result.questionId,
+      answer: result.answer,
+    }))
+
+    gameService.saveUserAnswers({
+      userAnswers,
+      userToken,
+    })
+
+    changeToResultsView();
+  }
 
   const closeCheckAfterOneSecond = () => {
     const showInterval = setInterval(() => {
@@ -82,7 +102,7 @@ export const SecretsGameProvider: FC<ISecretsGameProvider> = ({
     results,
     isInFirstQuestion,
     isInLastQuestion,
-    changeToResultsView,
+    changeToResultsView: changeToResultsViewAndPostResults,
   };
 
   return (

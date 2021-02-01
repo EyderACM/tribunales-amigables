@@ -9,8 +9,10 @@ import {
   Spacer,
 } from "@chakra-ui/react";
 import { MenuCard } from "../components/molecules/MenuCard";
+import useProtectedRoute from 'hooks/useProtectedRoute/useProtectedRoute';
 
-export default function Prevention() {
+function Prevention() {
+  useProtectedRoute();
   const router = useRouter();
 
   return (
@@ -51,3 +53,5 @@ export default function Prevention() {
     </div>
   );
 }
+
+export default Prevention;

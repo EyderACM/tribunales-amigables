@@ -1,5 +1,4 @@
 export default interface IBinaryQuestionResult {
-  description: string;
-  questionIsAnswered: boolean;
-  answerWasCorrect: boolean;
+  questionId: number;
+  answer: string;
 }
