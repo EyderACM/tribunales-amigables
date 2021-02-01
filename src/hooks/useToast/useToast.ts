@@ -21,7 +21,6 @@ function useToast() {
   const callSuccessToast = (message = "Exitosamente realizado") => {
     return toast({
       title: "Solicitud exitosa",
-      description: message,
       status: "success",
       ...toastBaseConfig(message),
     });
