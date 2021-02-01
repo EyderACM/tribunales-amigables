@@ -86,7 +86,7 @@ const Register = () => {
             type="password"
             inputRef={register({ required: true, minLength: 8 })}
           />
-          <When condition={errors.password}>
+          <When condition={Boolean(errors.password)}>
             <FormErrorMessage>La contraseña es muy corta</FormErrorMessage>
           </When>
           <Input
