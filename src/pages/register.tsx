@@ -12,7 +12,7 @@ import {
 import { useForm } from "react-hook-form";
 import { Input } from "../components/atoms/Input";
 import useToast from "hooks/useToast/useToast";
-import useUserService from "services/userService/userService";
+import userService from "services/userService/userService";
 import useUserAuth from "hooks/useUserAuth/useUserAuth";
 import { useRouter } from "next/router";
 import { When } from "react-if";
@@ -28,25 +28,20 @@ interface IRegisterInput {
 const Register = () => {
   const router = useRouter();
   const { callAlertToast, callSuccessToast } = useToast();
-  const [setUserToken] = useUserAuth();
+  const [, setUserToken] = useUserAuth();
   const { register, handleSubmit, errors } = useForm<IRegisterInput>();
 
   const onSubmit = async (data: IRegisterInput) => {
-    const {
-      email,
-      firstName,
-      lastName,
-      password,
-      password_confirmation,
-    } = data;
+    const { email, password, password_confirmation } = data;
     const userFormData = { email, password, password_confirmation };
 
     try {
-      const data = await useUserService.registerUser({ userFormData });
-      setUserToken(data["auth_token"]);
+      const data = await userService.registerUser({ userFormData });
+      setUserToken({ token: data["auth_token"] });
       callSuccessToast();
       router.push("/");
     } catch (error) {
+      console.log(error);
       callAlertToast(
         "Error con el registro, ingresa correctamente los datos y asegúrate que el correo no haya sido registrado."
       );
