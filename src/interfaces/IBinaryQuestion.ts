@@ -7,4 +7,6 @@ export default interface IBinaryQuestion {
   description: string;
   isAnswered: boolean;
   answerWasCorrect: boolean;
+  correctAnswer: string;
+  incorrectAnswer: string;
 }
