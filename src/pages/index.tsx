@@ -12,9 +12,18 @@ import {
 import { Link } from "../components/atoms/Link";
 import { MenuCard } from "../components/molecules/MenuCard";
 import { motion, AnimatePresence } from "framer-motion";
+import useUserAuth from "hooks/useUserAuth/useUserAuth";
+import { Else, If, Then } from "react-if";
+import React from "react";
 
 export default function Home() {
+  const [userToken, setUserToken] = useUserAuth();
   const router = useRouter();
+
+  const logoutUser = () => {
+    setUserToken({ token: "" });
+    router.push("/");
+  };
 
   return (
     <div>
@@ -28,9 +37,18 @@ export default function Home() {
             <Flex justify="space-between">
               <Avatar src="/images/logo.png"/>
               <Heading>De Boca en Boca</Heading>
-              <Button colorScheme="blue" as={Link} href="/login">
-                Entrar
-              </Button>
+              <If condition={userToken === "" || !!userToken}>
+                <Then>
+                  <Button colorScheme="red" as={Link} onClick={logoutUser}>
+                    Cerrar Sesión
+                  </Button>
+                </Then>
+                <Else>
+                  <Button colorScheme="blue" as={Link} href="/login">
+                    Entrar
+                  </Button>
+                </Else>
+              </If>
             </Flex>
             <Spacer />
             <Stack justify="center" align="center">
