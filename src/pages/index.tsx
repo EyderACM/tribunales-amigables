@@ -1,3 +1,4 @@
+import React from "react";
 import Head from "next/head";
 import {
   Grid,
@@ -13,7 +14,6 @@ import { MenuCard } from "../components/molecules/MenuCard";
 import { motion, AnimatePresence } from "framer-motion";
 import useUserAuth from "hooks/useUserAuth/useUserAuth";
 import { Else, If, Then } from "react-if";
-import React from "react";
 import { useRouter } from "next/router";
 
 export default function Home() {
@@ -22,7 +22,8 @@ export default function Home() {
 
   const logoutUser = () => {
     setUserToken({ token: "" });
-    router.push("/");
+    console.log(userToken);
+    //router.reload();
   };
 
   return (
@@ -37,7 +38,7 @@ export default function Home() {
             <Flex justify="space-between">
               <Avatar />
               <Heading>De Boca en Boca</Heading>
-              <If condition={userToken === "" || !!userToken}>
+              <If condition={userToken !== "" || userToken === undefined}>
                 <Then>
                   <Button colorScheme="red" as={Link} onClick={logoutUser}>
                     Cerrar Sesión
