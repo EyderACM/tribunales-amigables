@@ -2,12 +2,9 @@ import useLocalStorage from "hooks/useLocalStorage/useLocalStorage";
 
 function useUserAuth() {
   const [storedToken, setStoredToken] = useLocalStorage("auth", undefined);
+  const userToken = storedToken;
 
-  const userToken = () => {
-    return storedToken;
-  };
-
-  const setUserToken = ({ token }) => {
+  const setUserToken = ({ token }: { token: string }) => {
     setStoredToken(token);
   };
 
