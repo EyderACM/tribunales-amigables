@@ -1,5 +1,5 @@
 const colors = {
-  FILL_COLOR: "#65A8BB",
+  FILL_COLOR: "rgba(101, 168, 187, 0.67)",
   BORDER_COLOR: "#FFFFFF",
 };
 
