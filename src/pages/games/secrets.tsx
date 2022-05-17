@@ -9,6 +9,7 @@ import { SecretsGameResults } from "components/organisms/SecretsGameResults";
 import IBinaryQuestion from "interfaces/IBinaryQuestion";
 import { secretsGameService } from "services/secretsGameService";
 import useProtectedRoute from "hooks/useProtectedRoute/useProtectedRoute";
+import { Box } from "@chakra-ui/react";
 
 const gameService = secretsGameService();
 
@@ -27,23 +28,32 @@ const Secrets = ({ questions }: ISecrets) => {
   } = useGameFlow();
 
   return (
-    <SecretsGameProvider
-      initialQuestionsData={questions}
-      changeToResultsView={changeToResultsView}
+    <Box
+      background="#419FBB"
+      backgroundImage='url("/images/GameBg.svg")'
+      width="100%"
+      height="100%"
     >
-      <When condition={inInstructionView}>
-        <GameInstructions
-          data={testInstructionsData}
-          changeToGameView={changeToGameView}
-        />
-      </When>
-      <When condition={inGameView}>
-        <SecretsGameView />
-      </When>
-      <When condition={inResultsView}>
-        <SecretsGameResults />
-      </When>
-    </SecretsGameProvider>
+      <Box>
+        <SecretsGameProvider
+          initialQuestionsData={questions}
+          changeToResultsView={changeToResultsView}
+        >
+          <When condition={inInstructionView}>
+            <GameInstructions
+              data={testInstructionsData}
+              changeToGameView={changeToGameView}
+            />
+          </When>
+          <When condition={inGameView}>
+            <SecretsGameView />
+          </When>
+          <When condition={inResultsView}>
+            <SecretsGameResults />
+          </When>
+        </SecretsGameProvider>
+      </Box>
+    </Box>
   );
 };
 
@@ -51,5 +61,5 @@ export default Secrets;
 
 export const getServerSideProps: GetServerSideProps = async () => {
   const questions = await gameService.fetchQuestions();
-  return { props: { questions } }
-}
+  return { props: { questions } };
+};
