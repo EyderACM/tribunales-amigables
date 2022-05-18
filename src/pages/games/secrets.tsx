@@ -9,7 +9,7 @@ import { SecretsGameResults } from "components/organisms/SecretsGameResults";
 import IBinaryQuestion from "interfaces/IBinaryQuestion";
 import { secretsGameService } from "services/secretsGameService";
 import useProtectedRoute from "hooks/useProtectedRoute/useProtectedRoute";
-import { Box } from "@chakra-ui/react";
+import { Box, Button, Flex, Image, Text } from "@chakra-ui/react";
 
 const gameService = secretsGameService();
 
@@ -32,7 +32,7 @@ const Secrets = ({ questions }: ISecrets) => {
       background="#419FBB"
       backgroundImage='url("/images/GameBg.svg")'
       width="100%"
-      height="100%"
+      height="100vh"
     >
       <Box>
         <SecretsGameProvider
@@ -52,6 +52,39 @@ const Secrets = ({ questions }: ISecrets) => {
             <SecretsGameResults />
           </When>
         </SecretsGameProvider>
+        <Box display="block">
+          <Flex
+            height="12vh"
+            flexDirection="column"
+            alignItems="center"
+            justifyContent="space-evenly"
+          >
+            <Box
+              width="30px"
+              height="30px"
+              background="#6C3EA2"
+              borderRadius="50px"
+            >
+              <Flex
+                width="100%"
+                height="100%"
+                flexDirection="column"
+                alignItems="center"
+                justifyContent="space-evenly"
+              >
+                <Image
+                  width="60%"
+                  src="/images/getOutIcon.svg"
+                  _hover={{ cursor: "pointer" }}
+                />
+              </Flex>
+            </Box>
+
+            <Text color="#FFFFFF" fontSize="12px">
+              Salir del juego
+            </Text>
+          </Flex>
+        </Box>
       </Box>
     </Box>
   );
