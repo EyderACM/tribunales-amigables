@@ -1,17 +1,20 @@
 import React from "react";
 import { Button, Divider, Heading, Image, Stack, Text } from "@chakra-ui/react";
 import ButtonAction from "components/atoms/ButtonAction/ButtonAction";
+import { Link } from "components/atoms/Link";
 
 interface ILandingCard {
   title: string;
   text: string;
   imgUrl?: string;
+  href?: string;
 }
 
 const LandingCard = ({
   title,
   text,
   imgUrl = "https://via.placeholder.com/260x165",
+  href,
 }: ILandingCard) => {
   return (
     <Stack
@@ -28,9 +31,11 @@ const LandingCard = ({
       <Divider color="#AF9CC7" />
       <Image src={imgUrl} />
       <Text p="1rem 2.5rem">{text}</Text>
-      <ButtonAction px="4rem" w="60%">
-        ¡Jugar!
-      </ButtonAction>
+      <Link href={href || "#"} textDecoration="none !important" w="100%">
+        <ButtonAction px="4rem" w="60%">
+          ¡Jugar!
+        </ButtonAction>
+      </Link>
     </Stack>
   );
 };

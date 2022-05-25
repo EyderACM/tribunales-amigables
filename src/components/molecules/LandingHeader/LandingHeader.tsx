@@ -1,12 +1,28 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import { HStack, Stack } from "@chakra-ui/react";
 
 import NavItem from "components/atoms/NavItem/NavItem";
 import { Link } from "components/atoms/Link";
 import ButtonAction from "components/atoms/ButtonAction/ButtonAction";
+import useUserAuth from "hooks/useUserAuth/useUserAuth";
 
 const LandingHeader = () => {
+  const [userToken, setUserToken] = useUserAuth();
+  const [userIsLoggedIn, setUserIsLoggedIn] = useState(undefined);
+
+  useEffect(() => {
+    if (userToken) {
+      setUserIsLoggedIn(true);
+    } else {
+      setUserIsLoggedIn(false);
+    }
+  }, [userToken]);
+
+  const logoutUser = () => {
+    setUserToken({ token: "" });
+  };
+
   return (
     <Stack
       as="header"
@@ -18,7 +34,7 @@ const LandingHeader = () => {
       spacing="2rem"
       zIndex="10"
     >
-      <Link>
+      <Link href="/landing">
         <Image
           src="/images/logo.png"
           alt="logo"
@@ -32,11 +48,25 @@ const LandingHeader = () => {
         w={{ base: "250px", md: "300px" }}
         justify="space-between"
       >
-        <NavItem isSelected text="Inicio" imgSrc="images/houseIcon.png" />
-        <NavItem text="Juegos" imgSrc="images/controllerIcon.png" />
-        <NavItem text="Acerca" imgSrc="images/infoIcon.png" />
+        <Link href="/landing">
+          <NavItem text="Inicio" imgSrc="/images/houseIcon.png" />
+        </Link>
+        <Link href="/landing#games">
+          <NavItem text="Juegos" imgSrc="/images/controllerIcon.png" />
+        </Link>
+        <Link href="/landing#info">
+          <NavItem text="Info" imgSrc="/images/infoIcon.png" />
+        </Link>
       </HStack>
-      <ButtonAction>Iniciar Sesión</ButtonAction>
+      {userIsLoggedIn ? (
+        <ButtonAction colorScheme="red" as={Link} onClick={logoutUser}>
+          Cerrar Sesión
+        </ButtonAction>
+      ) : (
+        <Link href="/login" textDecoration="none !important">
+          <ButtonAction>Iniciar Sesión</ButtonAction>
+        </Link>
+      )}
     </Stack>
   );
 };

@@ -1,6 +1,5 @@
 import React from "react";
 import { Box, Center, Stack, Text, Image } from "@chakra-ui/react";
-import { Link } from "../Link";
 
 interface INavItem {
   text: string;
@@ -10,7 +9,7 @@ interface INavItem {
 
 const NavItem = ({ text, isSelected = false, imgSrc = "" }: INavItem) => {
   return (
-    <Link
+    <Box
       _hover={{
         "span:first-of-type": {
           bgColor: "social.yellow",
@@ -68,7 +67,7 @@ const NavItem = ({ text, isSelected = false, imgSrc = "" }: INavItem) => {
           {text}
         </Text>
       </Stack>
-    </Link>
+    </Box>
   );
 };
 

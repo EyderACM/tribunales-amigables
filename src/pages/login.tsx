@@ -36,7 +36,7 @@ const Login = () => {
       });
       setUserToken({ token: data["auth_token"] });
       callSuccessToast();
-      router.push("/");
+      router.push("/landing");
     } catch (error) {
       callAlertToast(
         "Error con el registro, ingresa correctamente los datos y asegúrate que el correo exista."
