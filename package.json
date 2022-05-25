@@ -5,11 +5,12 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start"
+    "start": "next start",
+    "export": "next export"
   },
   "dependencies": {
     "@chakra-ui/icons": "^1.0.3",
-    "@chakra-ui/react": "^1.0.4",
+    "@chakra-ui/react": "^1.8.7",
     "@emotion/react": "^11.1.4",
     "@emotion/styled": "^11.0.0",
     "framer-motion": "^3.1.1",
@@ -17,7 +18,7 @@
     "react": "17.0.1",
     "react-dom": "17.0.1",
     "react-if": "^4.0.1",
-    "tailwindcss": "^2.0.2",
+    "react-responsive-carousel": "^3.2.23",
     "use-sound": "^2.0.1"
   },
   "devDependencies": {

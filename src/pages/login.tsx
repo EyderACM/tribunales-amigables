@@ -17,7 +17,7 @@ const Login = () => {
       templateRows="auto 40px 1fr"
       p="20px"
       pt="40px"
-      align="center"
+      alignItems="center"
     >
       <Heading>Iniciar Sesión</Heading>
       <Spacer />

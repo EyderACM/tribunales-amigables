@@ -11,7 +11,7 @@ import { Input } from "../components/atoms/Input";
 
 const Register = () => {
   return (
-    <Grid h="100vh" templateRows="auto 40px 1fr" p="20px" align="center">
+    <Grid h="100vh" templateRows="auto 40px 1fr" p="20px" alignItems="center">
       <Heading>Regístrate</Heading>
       <Spacer />
       <form action="">
