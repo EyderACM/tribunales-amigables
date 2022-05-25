@@ -1,23 +1,39 @@
-import React from 'react'
-import { Box, Center, Stack, Text } from '@chakra-ui/react'
-import { AddIcon } from '@chakra-ui/icons'
-import { Link } from '../Link'
+import React from "react";
+import { Box, Center, Stack, Text, Image } from "@chakra-ui/react";
+import { Link } from "../Link";
 
 interface INavItem {
-  text: string
+  text: string;
+  isSelected?: boolean;
+  imgSrc?: string;
 }
 
-const NavItem = ({ text }: INavItem) => {
+const NavItem = ({ text, isSelected = false, imgSrc = "" }: INavItem) => {
   return (
     <Link
       _hover={{
-        'span:first-of-type': { bgColor: 'social.yellow', borderColor: 'social.yellow' },
-        'span:last-of-type': { bgColor: 'social.darkYellow' },
+        "span:first-of-type": {
+          bgColor: "social.yellow",
+          borderColor: "social.yellow",
+        },
+        "span:last-of-type": { bgColor: "social.darkYellow" },
       }}
       _focus={{
-        'span:first-of-type': { bgColor: 'social.yellow', borderColor: 'social.yellow' },
-        'span:last-of-type': { bgColor: 'social.darkYellow' },
+        "span:first-of-type": {
+          bgColor: "social.yellow",
+          borderColor: "social.yellow",
+        },
+        "span:last-of-type": { bgColor: "social.darkYellow" },
       }}
+      sx={
+        isSelected && {
+          "span:first-of-type": {
+            bgColor: "social.yellow",
+            borderColor: "social.yellow",
+          },
+          "span:last-of-type": { bgColor: "social.darkYellow" },
+        }
+      }
     >
       <Stack align="center" spacing=".75rem">
         <Box pos="relative" w="56.71px" h="56.71px">
@@ -33,7 +49,7 @@ const NavItem = ({ text }: INavItem) => {
             transition=".3s"
             zIndex="1"
           >
-            <AddIcon />
+            <Image src={imgSrc} />
           </Center>
           <Box
             as="span"
@@ -53,7 +69,7 @@ const NavItem = ({ text }: INavItem) => {
         </Text>
       </Stack>
     </Link>
-  )
-}
+  );
+};
 
-export default NavItem
+export default NavItem;

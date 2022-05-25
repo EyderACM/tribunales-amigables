@@ -11,7 +11,7 @@ function MyApp({ Component, pageProps }) {
       <Fonts />
       <Component {...pageProps} />
     </ChakraProvider>
-  )
+  );
 }
 
 export default MyApp;

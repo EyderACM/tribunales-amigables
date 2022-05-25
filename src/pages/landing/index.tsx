@@ -1,9 +1,9 @@
-import React from 'react'
-import { Stack, Text } from '@chakra-ui/react'
-import LandingHeader from 'components/molecules/LandingHeader/LandingHeader'
-import LandingTeam from 'components/molecules/LandingTeam/LandingTeam'
-import LandingGames from 'components/molecules/LandingGames/LandingGames'
-import LandingHero from 'components/molecules/LandingHero/LandingHero'
+import React from "react";
+import { Stack, Text } from "@chakra-ui/react";
+import LandingHeader from "components/molecules/LandingHeader/LandingHeader";
+import LandingTeam from "components/molecules/LandingTeam/LandingTeam";
+import LandingGames from "components/molecules/LandingGames/LandingGames";
+import LandingHero from "components/molecules/LandingHero/LandingHero";
 
 const Home = () => {
   return (
@@ -12,10 +12,8 @@ const Home = () => {
       <LandingHeader />
       {/* Hero */}
       <LandingHero />
-
       {/* Games */}
       <LandingGames />
-
       {/* Team */}
       <LandingTeam />
 
@@ -31,7 +29,7 @@ const Home = () => {
         <Text>&#169; 2021 - De Boca en Boca. All rights reserved</Text>
       </Stack>
     </>
-  )
-}
+  );
+};
 
-export default Home
+export default Home;

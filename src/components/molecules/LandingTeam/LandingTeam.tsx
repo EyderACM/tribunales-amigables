@@ -1,42 +1,70 @@
-import React from 'react'
+import React, { useState } from "react";
 import {
   Box,
+  Button,
   Heading,
+  HStack,
   Image,
   ListItem,
   Stack,
   Text,
   UnorderedList,
-} from '@chakra-ui/react'
+  VStack,
+} from "@chakra-ui/react";
 
 const LandingTeam = () => {
+  const [position, setPosition] = useState(0);
+
   return (
     <Stack
       align="center"
       bgColor="social.green"
-      py={{ base: '10rem', md: '15rem', '2xl': '20rem' }}
+      py="0px"
+      pb={{ base: "10rem", md: "15rem", "2xl": "20rem" }}
       h="50%"
       pos="relative"
+      backgroundImage="images/backgroundImageTeam.svg"
+      backgroundRepeat="no-repeat"
+      backgroundPosition="100%"
     >
-      <Image
-        src="/images/waves.svg"
-        transform="rotate(180deg)"
-        pos="absolute"
-        objectFit="cover"
-        w="100%"
-        top="-1"
-      />
       <Image src="/images/waves.svg" pos="absolute" w="100%" bottom="-1" />
       <Stack
         color="social.white"
         spacing="4rem"
-        maxW={{ base: '80%', md: '90%' }}
+        maxW={{ base: "80%", md: "90%" }}
       >
         <Heading textAlign="center">¡Conoce a los Amigos Tribunal!</Heading>
-        <Stack spacing="3rem" direction={{ base: 'column', md: 'row' }}>
-          <Box>
-            <Image src="https://via.placeholder.com/400" borderRadius="37px" />
-          </Box>
+        <Stack spacing="3rem" direction={{ base: "column", md: "row" }}>
+          <VStack>
+            <Box
+              alignItems="center"
+              display="flex"
+              flexDir="row"
+              justifyContent="center"
+              mb="10px"
+            >
+              <Button
+                variant="unstyled"
+                mr={3}
+                onClick={() => setPosition((prev) => (prev ? prev - 1 : 0))}
+              >
+                <Image src="images/leftButton.svg" />
+              </Button>
+              <Image src="images/doctor.png" borderRadius="37px" />
+              <Button
+                variant="unstyled"
+                ml={3}
+                onClick={() => setPosition((prev) => prev + 1)}
+              >
+                <Image src="images/rightButton.svg" />
+              </Button>
+            </Box>
+            <HStack gap={1}>
+              {[...Array(4)].map((character) => (
+                <Image width="65px" src="images/characterSlide.svg" />
+              ))}
+            </HStack>
+          </VStack>
           <Stack maxW="400px">
             <Heading as="h3">Psicóloga</Heading>
             <Text>
@@ -55,7 +83,7 @@ const LandingTeam = () => {
         </Stack>
       </Stack>
     </Stack>
-  )
-}
+  );
+};
 
-export default LandingTeam
+export default LandingTeam;

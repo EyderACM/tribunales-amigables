@@ -32,9 +32,9 @@ const LandingHeader = () => {
         w={{ base: "250px", md: "300px" }}
         justify="space-between"
       >
-        <NavItem text="Inicio" />
-        <NavItem text="Juegos" />
-        <NavItem text="Acerca" />
+        <NavItem isSelected text="Inicio" imgSrc="images/houseIcon.png" />
+        <NavItem text="Juegos" imgSrc="images/controllerIcon.png" />
+        <NavItem text="Acerca" imgSrc="images/infoIcon.png" />
       </HStack>
       <ButtonAction>Iniciar Sesión</ButtonAction>
     </Stack>
