@@ -9,7 +9,8 @@ import { SecretsGameResults } from "components/organisms/SecretsGameResults";
 import IBinaryQuestion from "interfaces/IBinaryQuestion";
 import { secretsGameService } from "services/secretsGameService";
 import useProtectedRoute from "hooks/useProtectedRoute/useProtectedRoute";
-import { Box, Button, Flex, Image, Text } from "@chakra-ui/react";
+import { Box, Flex, Image, Text } from "@chakra-ui/react";
+import LandingHeader from "components/molecules/LandingHeader/LandingHeader";
 
 const gameService = secretsGameService();
 
@@ -32,8 +33,9 @@ const Secrets = ({ questions }: ISecrets) => {
       background="#419FBB"
       backgroundImage='url("/images/GameBg.svg")'
       width="100%"
-      height="100vh"
+      height="100%"
     >
+      <LandingHeader />
       <Box>
         <SecretsGameProvider
           initialQuestionsData={questions}

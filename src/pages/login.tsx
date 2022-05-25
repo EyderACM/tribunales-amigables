@@ -1,12 +1,6 @@
-import {
-  Heading,
-  Grid,
-  Spacer,
-  Flex,
-  Stack,
-  Button,
-  Image,
-} from "@chakra-ui/react";
+import { Heading, Stack, Image, Box, Center, Text } from "@chakra-ui/react";
+import ButtonAction from "components/atoms/ButtonAction/ButtonAction";
+import LandingHeader from "components/molecules/LandingHeader/LandingHeader";
 import useToast from "hooks/useToast/useToast";
 import useUserAuth from "hooks/useUserAuth/useUserAuth";
 import { useRouter } from "next/router";
@@ -51,59 +45,129 @@ const Login = () => {
   };
 
   return (
-    <Grid
-      h="100vh"
-      templateRows="auto 40px 1fr"
-      p="20px"
-      pt="40px"
-      align="center"
+    <Box
+      bgColor="social.darkPurple"
+      pos="relative"
+      zIndex="1"
+      overflow="hidden"
     >
-      <Heading>Iniciar Sesión</Heading>
-      <Spacer />
-      <form onSubmit={handleSubmit(onSubmit)}>
-        <Image
-          src="/images/happy-cat.svg"
-          boxSize="100px"
-          objectFit="contain"
-          transform="translateY(10px)"
-        />
-        <Grid
-          templateRows="auto 20px auto"
-          bg="gray.300"
-          h="fit-content"
-          maxWidth="500px"
-          p="20px"
+      <LandingHeader />
+      <Image
+        src="/images/balam.png"
+        pos="absolute"
+        top="35rem"
+        left="0"
+        display={{ base: "none", lg: "block" }}
+      />
+      <Image
+        src="/images/niño1.png"
+        pos="absolute"
+        top="20rem"
+        right="0"
+        display={{ base: "none", lg: "block" }}
+      />
+      <Image
+        src="/images/niño2.png"
+        pos="absolute"
+        top="50rem"
+        right="0"
+        display={{ base: "none", lg: "block" }}
+      />
+      <Image
+        src="/images/vectorgrande.png"
+        zIndex="-1"
+        pos="absolute"
+        right="0"
+        display={{ base: "none", lg: "block" }}
+      />
+      <Image
+        src="/images/control.png"
+        zIndex="-1"
+        pos="absolute"
+        left="0"
+        bottom="0"
+        display={{ base: "none", lg: "block" }}
+      />
+      <Box
+        zIndex="-1"
+        pos="absolute"
+        w="100px"
+        h="100px"
+        top="20rem"
+        left="rem"
+        borderRadius="50%"
+        background="#653895"
+      />
+      <Center>
+        <Stack
+          bgColor="#8854C0"
+          color="social.white"
+          textAlign="center"
+          align="center"
+          m={{ md: "5rem" }}
+          borderRadius={{ md: "2rem" }}
+          w="100%"
+          maxW="800px"
         >
-          <Stack spacing="15px" p="10px 40px">
-            <Input
-              name="email"
-              placeholder="Correo"
-              type="email"
-              inputRef={register({ required: true })}
-            />
-            <Input
-              name="password"
-              placeholder="Contraseña"
-              type="password"
-              inputRef={register({ required: true })}
-            />
+          <Stack spacing="2rem" my="4rem" px="2rem" align="center" maxW="600px">
+            <Heading>¡Hola de nuevo!</Heading>
+            <Text fontSize="xl">
+              Por favor, ingresa tu correo y contraseña para poder ingresar a
+              Tribunales Amigables
+            </Text>
+            <Stack
+              as="form"
+              spacing="2rem"
+              maxWidth="500px"
+              justify="center"
+              w="100%"
+              onSubmit={handleSubmit(onSubmit)}
+            >
+              <Stack spacing="1rem">
+                <Heading as="p" fontSize="lg">
+                  Correo Electrónico
+                </Heading>
+                <Input
+                  name="email"
+                  placeholder="correoelectrónico@correo.com"
+                  type="email"
+                  inputRef={register({ required: true })}
+                />
+              </Stack>
+
+              <Stack spacing="1rem">
+                <Heading as="p" fontSize="lg">
+                  Contraseña
+                </Heading>
+                <Input
+                  name="password"
+                  placeholder="Contraseña"
+                  type="password"
+                  inputRef={register({ required: true })}
+                />
+              </Stack>
+
+              <Stack spacing="2rem">
+                <ButtonAction
+                  maxW="300px"
+                  w="100%"
+                  alignSelf="center"
+                  type="submit"
+                >
+                  Iniciar Sesión
+                </ButtonAction>
+                <Text>
+                  ¿Aún no creas una cuenta?
+                  <Link href="/register" textDecoration="underline">
+                    Creala aquí
+                  </Link>
+                </Text>
+              </Stack>
+            </Stack>
           </Stack>
-          <Spacer />
-          <Flex justify="space-between" align="center">
-            <Link textAlign="left">¿Olvidaste tu contraseña?</Link>
-            <Grid templateColumns="auto 10px 1fr">
-              <Link href="/register" h="fit-content" alignSelf="center">
-                Regístrate
-              </Link>
-              <Spacer />
-              <Button colorScheme="green" type="submit">
-                Entrar
-              </Button>
-            </Grid>
-          </Flex>
-        </Grid>
-      </form>
-    </Grid>
+        </Stack>
+      </Center>
+    </Box>
   );
 };
 

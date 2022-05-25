@@ -1,4 +1,3 @@
-import { ChevronLeftIcon, ChevronRightIcon } from "@chakra-ui/icons";
 import React, { useState, useEffect } from "react";
 import { InstructionCard } from "../../molecules/InstructionCard";
 import {
@@ -8,10 +7,12 @@ import {
   Box,
   Center,
   Stack,
-  Link,
+  Image,
 } from "@chakra-ui/react";
 import { useRouter } from "next/router";
 import colors from "./GameInstructionsColors";
+import LandingHeader from "components/molecules/LandingHeader/LandingHeader";
+import ButtonAction from "components/atoms/ButtonAction/ButtonAction";
 
 interface IGameInstructions {
   data: { titles: string[]; descriptions: string[] };
@@ -49,14 +50,15 @@ export const GameInstructions = ({
   };
 
   return (
-    <Box w="100%" h="100%">
+    <Box pos="inherit" zIndex="10">
       <Box w="100%" height="10%">
-        <Center position="relative" top="10px">
-          <Heading>Secretos</Heading>
+        <Center position="relative" mt="5rem">
+          <Heading color="social.white" size="2xl">
+            Secretos
+          </Heading>
         </Center>
-        <Avatar left="10px" bottom="30px" src="/images/logo.png" />
       </Box>
-      <Box>
+      <Box p="4rem">
         <InstructionCard
           title={title}
           information={information}
