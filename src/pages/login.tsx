@@ -36,7 +36,7 @@ const Login = () => {
       });
       setUserToken({ token: data["auth_token"] });
       callSuccessToast();
-      router.push("/landing");
+      router.push("/");
     } catch (error) {
       callAlertToast(
         "Error con el registro, ingresa correctamente los datos y asegúrate que el correo exista."
@@ -50,6 +50,7 @@ const Login = () => {
       pos="relative"
       zIndex="1"
       overflow="hidden"
+      py="1.75rem"
     >
       <LandingHeader />
       <Image

@@ -6,6 +6,7 @@ import IBinaryQuestionResult from "interfaces/IBinaryQuestionResult";
 interface IQuestionIndexAnswer {
   questionIndex: number;
   answer: string;
+  time?: number;
 }
 
 interface IUseBinaryQuestionsReturn {
@@ -26,7 +27,7 @@ export const useBinaryQuestions = (
     setResults(initialResultsData);
   }, [questions]);
 
-  const saveAnswer = ({ questionIndex, answer }: IQuestionIndexAnswer) => {
+  const saveAnswer = ({ questionIndex, answer, time }: IQuestionIndexAnswer) => {
     const updatedQuestionsData = questions.map((question, currentIndex) => {
       if (currentIndex === questionIndex) {
         const answerWasCorrect = checkIfAnswerIsCorrect({
@@ -38,6 +39,7 @@ export const useBinaryQuestions = (
           ...question,
           isAnswered: true,
           answerWasCorrect,
+          time
         };
       }
 

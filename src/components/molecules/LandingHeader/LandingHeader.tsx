@@ -34,7 +34,7 @@ const LandingHeader = () => {
       spacing="2rem"
       zIndex="10"
     >
-      <Link href="/landing">
+      <Link href="/">
         <Image
           src="/images/logo.png"
           alt="logo"
@@ -48,13 +48,13 @@ const LandingHeader = () => {
         w={{ base: "250px", md: "300px" }}
         justify="space-between"
       >
-        <Link href="/landing">
+        <Link href="/">
           <NavItem text="Inicio" imgSrc="/images/houseIcon.png" />
         </Link>
-        <Link href="/landing#games">
+        <Link href="/#games">
           <NavItem text="Juegos" imgSrc="/images/controllerIcon.png" />
         </Link>
-        <Link href="/landing#info">
+        <Link href="/#info">
           <NavItem text="Info" imgSrc="/images/infoIcon.png" />
         </Link>
       </HStack>

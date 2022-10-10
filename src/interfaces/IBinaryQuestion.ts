@@ -9,4 +9,5 @@ export default interface IBinaryQuestion {
   answerWasCorrect: boolean;
   correctAnswer: string;
   incorrectAnswer: string;
+  time: number;
 }

@@ -1,4 +1,4 @@
-import { FC } from "react";
+import { FC, useEffect } from "react";
 import useSound from "use-sound";
 import { useDisclosure } from "@chakra-ui/react";
 import { ISecretsGameContext, SecretsGameContext } from "./SecretsGameContext";
@@ -38,18 +38,24 @@ export const SecretsGameProvider: FC<ISecretsGameProvider> = ({
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [userToken] = useUserAuth();
 
+  useEffect(() => {
+    const lastElem = results.length - 1;
+    if(results.length > 0 && results[lastElem].questionIsAnswered) {
+      changeToResultsViewAndPostResults()
+    }
+  }, [results])
+
   const changeToResultsViewAndPostResults = () => {
     const userAnswers: IUserSecretsGameAnswer[] = results.map(result => ({
       question_id: result.questionId,
       answer: result.answer,
+      time: result.time
     }))
 
     gameService.saveUserAnswers({
       userAnswers,
       userToken,
     })
-
-    changeToResultsView();
   }
 
   const closeCheckAfterOneSecond = () => {
@@ -69,7 +75,15 @@ export const SecretsGameProvider: FC<ISecretsGameProvider> = ({
     console.log("incorrect answer");
   };
 
-  const onAnswerSelected = (userAnswer: string) => {
+  const handleTimeLapse = (initTime: Date): number => {
+    const endTime = new Date();
+    return (endTime.getTime() - initTime.getTime()) / 1000;
+  }
+
+  const onAnswerSelected = (userAnswer: string, initTime: Date) => {
+
+    const timeLapsed = handleTimeLapse(initTime);
+
     const answerIsCorrect = checkIfAnswerIsCorrect({
       questionIndex: currentQuestionIndex,
       answer: userAnswer,
@@ -84,6 +98,7 @@ export const SecretsGameProvider: FC<ISecretsGameProvider> = ({
     saveAnswer({
       questionIndex: currentQuestionIndex,
       answer: userAnswer,
+      time: timeLapsed
     });
 
     if (isInLastQuestion) {

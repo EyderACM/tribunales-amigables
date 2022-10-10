@@ -60,7 +60,7 @@ const Register = () => {
       const data = await userService.registerUser({ userFormData });
       setUserToken({ token: data["auth_token"] });
       callSuccessToast();
-      router.push("/landing");
+      router.push("/");
     } catch (error) {
       console.log(error);
       callAlertToast(

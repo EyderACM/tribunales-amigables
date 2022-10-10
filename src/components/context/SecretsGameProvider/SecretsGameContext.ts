@@ -6,7 +6,7 @@ export interface ISecretsGameContext {
   currentQuestion: IBinaryQuestion;
   changeToNextQuestion: () => void;
   changeToPreviusQuestion: () => void;
-  onAnswerSelected: (userAnswer: string) => void;
+  onAnswerSelected: (userAnswer: string, initTime: Date) => void;
   correctCheckIsShowing: boolean;
   results: IBinaryQuestionResult[];
   isInFirstQuestion: boolean;

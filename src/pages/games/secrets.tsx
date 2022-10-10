@@ -8,7 +8,6 @@ import { testInstructionsData } from "testData";
 import { SecretsGameResults } from "components/organisms/SecretsGameResults";
 import IBinaryQuestion from "interfaces/IBinaryQuestion";
 import { secretsGameService } from "services/secretsGameService";
-import useProtectedRoute from "hooks/useProtectedRoute/useProtectedRoute";
 import { Box, Flex, Image, Text } from "@chakra-ui/react";
 import LandingHeader from "components/molecules/LandingHeader/LandingHeader";
 
@@ -19,7 +18,6 @@ interface ISecrets {
 }
 
 const Secrets = ({ questions }: ISecrets) => {
-  useProtectedRoute();
   const {
     changeToGameView,
     changeToResultsView,

@@ -17,12 +17,11 @@ export const secretsGameService = () => {
       Authorization: `Bearer ${userToken}`,
     }
 
+
     axios({
       method: "post",
       url: `${apiUrl}/answers/secrets`,
-      data: {
-        answers: userAnswers,
-      },
+      data: userAnswers,
       headers,
     }).then((res) => {
       console.log(res);

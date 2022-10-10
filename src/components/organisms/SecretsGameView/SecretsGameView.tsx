@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import {
   Button,
   Center,
@@ -20,6 +20,7 @@ import {
 import { SecretsGameContext } from "components/context/SecretsGameProvider";
 import { FadeInOutImage } from "components/atoms/FadeInOutImage";
 import ButtonAction from "components/atoms/ButtonAction/ButtonAction";
+import { useState } from "react";
 
 export const SecretsGameView = () => {
   const {
@@ -29,7 +30,13 @@ export const SecretsGameView = () => {
     changeToResultsView,
   } = useContext(SecretsGameContext);
 
+  const [initTime, setInitTime] = useState<Date>(null)
+
   const { isOpen, onOpen, onClose } = useDisclosure();
+
+  useEffect(() => {
+    setInitTime(new Date());
+  }, [currentQuestion.question]);
 
   return (
     <>
@@ -77,7 +84,7 @@ export const SecretsGameView = () => {
               maxWidth="500px"
               fontFamily="Tajawal"
             >
-              {currentQuestion.description}
+              {currentQuestion.question}
             </Text>
             <Text
               fontSize="xl"
@@ -90,14 +97,14 @@ export const SecretsGameView = () => {
             <Stack justify="center" w="300px" wrap="wrap" spacing="1rem">
               <ButtonAction
                 fontFamily="Acme"
-                onClick={() => onAnswerSelected(currentQuestion.correctAnswer)}
+                onClick={() => onAnswerSelected('secreto bueno', initTime)}
               >
                 ¡Contarlo!
               </ButtonAction>
               <ButtonAction
                 fontFamily="Acme"
                 onClick={() =>
-                  onAnswerSelected(currentQuestion.incorrectAnswer)
+                  onAnswerSelected("secreto malo", initTime)
                 }
               >
                 No Contarlo
@@ -105,7 +112,7 @@ export const SecretsGameView = () => {
               <ButtonAction
                 fontFamily="Acme"
                 onClick={() =>
-                  onAnswerSelected(currentQuestion.incorrectAnswer)
+                  onAnswerSelected("no lo se", initTime)
                 }
               >
                 No lo sé
@@ -169,5 +176,5 @@ export const SecretsGameView = () => {
         </ModalContent>
       </Modal>
     </>
-  );
+  )
 };

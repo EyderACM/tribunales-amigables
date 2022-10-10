@@ -9,6 +9,7 @@ const generateResultsData = (questionsData: IBinaryQuestion[]) => {
       description: question.description,
       questionIsAnswered: question.isAnswered,
       answerWasCorrect: question.answerWasCorrect,
+      time: question.time
     })
   );
 
