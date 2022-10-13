@@ -20,12 +20,8 @@ export const SecretsGameProvider: FC<ISecretsGameProvider> = ({
   changeToResultsView,
   children,
 }) => {
-  const {
-    questions,
-    checkIfAnswerIsCorrect,
-    saveAnswer,
-    results,
-  } = useBinaryQuestions(initialQuestionsData);
+  const { questions, checkIfAnswerIsCorrect, saveAnswer, results } =
+    useBinaryQuestions(initialQuestionsData);
   const [
     currentQuestion,
     currentQuestionIndex,
@@ -36,34 +32,34 @@ export const SecretsGameProvider: FC<ISecretsGameProvider> = ({
   ] = useArrayNavigator<IBinaryQuestion>(questions);
   const [playCorrectAnswerSound] = useSound("/sounds/correct-answer.mp3");
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const [userToken] = useUserAuth();
+  const [{ token }] = useUserAuth();
 
   useEffect(() => {
     const lastElem = results.length - 1;
-    if(results.length > 0 && results[lastElem].questionIsAnswered) {
-      changeToResultsViewAndPostResults()
+    if (results.length > 0 && results[lastElem].questionIsAnswered) {
+      changeToResultsViewAndPostResults();
     }
-  }, [results])
+  }, [results]);
 
   const changeToResultsViewAndPostResults = () => {
-    const userAnswers: IUserSecretsGameAnswer[] = results.map(result => ({
+    const userAnswers: IUserSecretsGameAnswer[] = results.map((result) => ({
       question_id: result.questionId,
       answer: result.answer,
-      time: result.time
-    }))
+      time: result.time,
+    }));
 
     gameService.saveUserAnswers({
       userAnswers,
-      userToken,
-    })
-  }
+      userToken: token,
+    });
+  };
 
   const closeCheckAfterOneSecond = () => {
     const showInterval = setInterval(() => {
       onClose();
       clearInterval(showInterval);
     }, 1000);
-  }
+  };
 
   const handleCorrectAnswer = () => {
     playCorrectAnswerSound();
@@ -78,10 +74,9 @@ export const SecretsGameProvider: FC<ISecretsGameProvider> = ({
   const handleTimeLapse = (initTime: Date): number => {
     const endTime = new Date();
     return (endTime.getTime() - initTime.getTime()) / 1000;
-  }
+  };
 
   const onAnswerSelected = (userAnswer: string, initTime: Date) => {
-
     const timeLapsed = handleTimeLapse(initTime);
 
     const answerIsCorrect = checkIfAnswerIsCorrect({
@@ -98,7 +93,7 @@ export const SecretsGameProvider: FC<ISecretsGameProvider> = ({
     saveAnswer({
       questionIndex: currentQuestionIndex,
       answer: userAnswer,
-      time: timeLapsed
+      time: timeLapsed,
     });
 
     if (isInLastQuestion) {

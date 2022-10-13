@@ -58,7 +58,7 @@ const Register = () => {
 
     try {
       const data = await userService.registerUser({ userFormData });
-      setUserToken({ token: data["auth_token"] });
+      setUserToken({ token: data["auth_token"], isAdmin: false });
       callSuccessToast();
       router.push("/");
     } catch (error) {
