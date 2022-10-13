@@ -17,6 +17,7 @@ const LandingTeam = () => {
 
   return (
     <Stack
+      id="info"
       align="center"
       bgColor="social.green"
       py="0px"

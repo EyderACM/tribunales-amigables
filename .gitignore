@@ -36,3 +36,5 @@ yarn-error.log*
 
 # Package manager
 yarn.lock
+
+.env

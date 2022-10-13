@@ -5,6 +5,7 @@ import LandingCard from "../LandingCard/LandingCard";
 const LandingGames = () => {
   return (
     <Stack
+      id="games"
       py="6rem"
       pb="500px"
       bgColor="social.purple"
@@ -32,6 +33,7 @@ const LandingGames = () => {
             accusantium at aperiam esse odio facilis voluptatum similique. At, dolor
             vel?"
           imgUrl="images/secretsThumbnail.png"
+          href="/games/secrets"
         />
         <LandingCard
           title="Explora el tribunal"

@@ -22,7 +22,7 @@ export const ResultsCard = ({ results }: IResultsCard) => {
       <Heading size="md">Resultados</Heading>
       <Stack spacing="5px" p="5px" bg="gray.200">
         {results.map((result) => (
-          <Stack justify="space-between" spacing="50px" direction="row">
+          <Stack justify="space-between" spacing="50px" direction="row" key={result.name}>
             <Text>{result.name}</Text>
             <Text>{result.status}</Text>
           </Stack>

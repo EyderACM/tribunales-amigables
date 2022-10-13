@@ -1,5 +1,5 @@
 const colors = {
-  FRESH_GRASS: "#82BF3F",
+  FRESH_GRASS: "#7DB778",
   CALM_WATER: "#6CC6EC",
 };
 

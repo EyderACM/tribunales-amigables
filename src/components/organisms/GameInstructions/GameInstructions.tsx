@@ -1,9 +1,18 @@
-import { ChevronLeftIcon, ChevronRightIcon } from "@chakra-ui/icons";
 import React, { useState, useEffect } from "react";
 import { InstructionCard } from "../../molecules/InstructionCard";
-import { Avatar, Heading, Button, Box, Center, Stack } from "@chakra-ui/react";
+import {
+  Avatar,
+  Heading,
+  Button,
+  Box,
+  Center,
+  Stack,
+  Image,
+} from "@chakra-ui/react";
 import { useRouter } from "next/router";
 import colors from "./GameInstructionsColors";
+import LandingHeader from "components/molecules/LandingHeader/LandingHeader";
+import ButtonAction from "components/atoms/ButtonAction/ButtonAction";
 
 interface IGameInstructions {
   data: { titles: string[]; descriptions: string[] };
@@ -41,47 +50,21 @@ export const GameInstructions = ({
   };
 
   return (
-    <Box>
+    <Box pos="inherit" zIndex="10">
       <Box w="100%" height="10%">
-        <Center position="relative" top="10px">
-          <Heading>Secretos</Heading>
+        <Center position="relative" mt="5rem">
+          <Heading color="social.white" size="2xl">
+            Secretos
+          </Heading>
         </Center>
-        <Avatar left="10px" bottom="30px" />
       </Box>
-      <Box>
-        <InstructionCard title={title} information={information} />
-      </Box>
-      <Box w="100%" height="10%">
-        <Stack
-          justifyContent="center"
-          marginTop="30px"
-          direction="row"
-          spacing="60px"
-        >
-          <Button
-            bg={colors.FRESH_GRASS}
-            fontWeight="Regular"
-            leftIcon={<ChevronLeftIcon w="6" h="6" />}
-            onClick={previousInstruction}
-          >
-            Regresar
-          </Button>
-          <Button
-            bg={colors.CALM_WATER}
-            fontWeight="Regular"
-            onClick={changeToGameView}
-          >
-            Saltar Explicación
-          </Button>
-          <Button
-            bg={colors.FRESH_GRASS}
-            fontWeight="Regular"
-            rightIcon={<ChevronRightIcon w="6" h="6" />}
-            onClick={nextInstruction}
-          >
-            Continuar
-          </Button>
-        </Stack>
+      <Box p="4rem">
+        <InstructionCard
+          title={title}
+          information={information}
+          nextInstruction={nextInstruction}
+          changeToGameView={changeToGameView}
+        />
       </Box>
     </Box>
   );

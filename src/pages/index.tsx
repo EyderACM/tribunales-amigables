@@ -1,49 +1,35 @@
-import Head from "next/head";
-import {
-  Grid,
-  Flex,
-  Stack,
-  Avatar,
-  Heading,
-  Button,
-  Spacer,
-} from "@chakra-ui/react";
-import { Link } from "../components/atoms/Link";
-import { MenuCard } from "../components/molecules/MenuCard";
+import React from "react";
+import { Stack, Text } from "@chakra-ui/react";
+import LandingHeader from "components/molecules/LandingHeader/LandingHeader";
+import LandingTeam from "components/molecules/LandingTeam/LandingTeam";
+import LandingGames from "components/molecules/LandingGames/LandingGames";
+import LandingHero from "components/molecules/LandingHero/LandingHero";
 
-export default function Home() {
+const Home = () => {
   return (
-    <div>
-      <Head>
-        <title>Social Good</title>
-        <link rel="icon" />
-      </Head>
-      <Grid h="100vh" templateRows="auto 10px 1fr 10px auto" p="20px">
-        <Flex justify="space-between">
-          <Avatar />
-          <Heading>De Boca en Boca</Heading>
-          <Button colorScheme="blue" as={Link} href="/login">
-            Entrar
-          </Button>
-        </Flex>
-        <Spacer />
-        <Stack
-          direction="row"
-          spacing="40px"
-          justify="center"
-          align="center"
-          wrap="wrap"
-        >
-          <MenuCard label="Prevención" />
-          <MenuCard label="Cultura Legal" />
-        </Stack>
-        <Spacer />
-        <Grid placeItems="center">
-          <Button colorScheme="green" w="fit-content">
-            Acerca del programa
-          </Button>
-        </Grid>
-      </Grid>
-    </div>
+    <>
+      {/* Header */}
+      <LandingHeader />
+      {/* Hero */}
+      <LandingHero />
+      {/* Games */}
+      <LandingGames />
+      {/* Team */}
+      <LandingTeam />
+
+      {/* Footer */}
+      <Stack
+        py="6rem"
+        align="center"
+        textAlign="center"
+        bgColor="social.purple"
+        color="social.white"
+        spacing="4rem"
+      >
+        <Text>&#169; 2021 - De Boca en Boca. All rights reserved</Text>
+      </Stack>
+    </>
   );
-}
+};
+
+export default Home;
