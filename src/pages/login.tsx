@@ -22,7 +22,7 @@ interface IRegisterInput {
 const Login = () => {
   const router = useRouter();
   const { callAlertToast, callSuccessToast } = useToast();
-  const [, setUserToken] = useUserAuth();
+  const [, setUserData] = useUserAuth();
   const { register, handleSubmit, errors } = useForm<IRegisterInput>();
 
   const onSubmit = async (data: IRegisterInput) => {
@@ -34,9 +34,11 @@ const Login = () => {
         userFormData,
         remember: true,
       });
-      setUserToken({ token: data["auth_token"] });
+      const isAdmin: boolean = email === "test@gmail.com";
+      setUserData({ token: data["auth_token"] as string, isAdmin });
       callSuccessToast();
-      router.push("/");
+      const route = isAdmin ? "/admin" : "/";
+      router.push(route);
     } catch (error) {
       callAlertToast(
         "Error con el registro, ingresa correctamente los datos y asegúrate que el correo exista."

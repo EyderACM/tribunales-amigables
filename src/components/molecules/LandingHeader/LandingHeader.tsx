@@ -8,19 +8,19 @@ import ButtonAction from "components/atoms/ButtonAction/ButtonAction";
 import useUserAuth from "hooks/useUserAuth/useUserAuth";
 
 const LandingHeader = () => {
-  const [userToken, setUserToken] = useUserAuth();
+  const [{ token }, setUserToken] = useUserAuth();
   const [userIsLoggedIn, setUserIsLoggedIn] = useState(undefined);
 
   useEffect(() => {
-    if (userToken) {
+    if (token) {
       setUserIsLoggedIn(true);
     } else {
       setUserIsLoggedIn(false);
     }
-  }, [userToken]);
+  }, [token]);
 
   const logoutUser = () => {
-    setUserToken({ token: "" });
+    setUserToken({ token: undefined, isAdmin: false });
   };
 
   return (

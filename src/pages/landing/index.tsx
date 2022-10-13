@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useRouter } from 'next/router'
+import { useRouter } from "next/router";
 import Head from "next/head";
 import {
   Grid,
@@ -27,11 +27,10 @@ export default function Home() {
     } else {
       setUserIsLoggedIn(false);
     }
-
-  }, [userToken])
+  }, [userToken]);
 
   const logoutUser = () => {
-    setUserToken({ token: "" });
+    setUserToken({ token: undefined, isAdmin: false });
   };
 
   return (
@@ -44,7 +43,7 @@ export default function Home() {
         <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
           <Grid h="100vh" templateRows="auto 10px 1fr 10px auto" p="20px">
             <Flex justify="space-between">
-              <Avatar src="/images/logo.png"/>
+              <Avatar src="/images/logo.png" />
               <Heading>De Boca en Boca</Heading>
               {userIsLoggedIn ? (
                 <Button colorScheme="red" as={Link} onClick={logoutUser}>
@@ -53,7 +52,7 @@ export default function Home() {
               ) : (
                 <Button colorScheme="blue" as={Link} href="/login">
                   Entrar
-                </Button>  
+                </Button>
               )}
             </Flex>
             <Spacer />
@@ -66,11 +65,14 @@ export default function Home() {
                 wrap="wrap"
               >
                 <MenuCard
-                  imageSrc="/images/prevencion.png" 
+                  imageSrc="/images/prevencion.png"
                   label="Prevención"
                   onClick={() => router.push("/prevention")}
                 />
-                <MenuCard imageSrc="/images/cultura_legal.png" label="Cultura Legal" />
+                <MenuCard
+                  imageSrc="/images/cultura_legal.png"
+                  label="Cultura Legal"
+                />
               </Stack>
             </Stack>
             <Spacer />

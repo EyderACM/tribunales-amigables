@@ -30,7 +30,7 @@ export const SecretsGameView = () => {
     changeToResultsView,
   } = useContext(SecretsGameContext);
 
-  const [initTime, setInitTime] = useState<Date>(null)
+  const [initTime, setInitTime] = useState<Date>(null);
 
   const { isOpen, onOpen, onClose } = useDisclosure();
 
@@ -97,23 +97,19 @@ export const SecretsGameView = () => {
             <Stack justify="center" w="300px" wrap="wrap" spacing="1rem">
               <ButtonAction
                 fontFamily="Acme"
-                onClick={() => onAnswerSelected('secreto bueno', initTime)}
-              >
-                ¡Contarlo!
-              </ButtonAction>
-              <ButtonAction
-                fontFamily="Acme"
-                onClick={() =>
-                  onAnswerSelected("secreto malo", initTime)
-                }
+                onClick={() => onAnswerSelected("secreto bueno", initTime)}
               >
                 No Contarlo
               </ButtonAction>
               <ButtonAction
                 fontFamily="Acme"
-                onClick={() =>
-                  onAnswerSelected("no lo se", initTime)
-                }
+                onClick={() => onAnswerSelected("secreto malo", initTime)}
+              >
+                ¡Contarlo!
+              </ButtonAction>
+              <ButtonAction
+                fontFamily="Acme"
+                onClick={() => onAnswerSelected("no lo se", initTime)}
               >
                 No lo sé
               </ButtonAction>
@@ -176,5 +172,5 @@ export const SecretsGameView = () => {
         </ModalContent>
       </Modal>
     </>
-  )
+  );
 };
