@@ -97,19 +97,19 @@ export const SecretsGameView = () => {
             <Stack justify="center" w="300px" wrap="wrap" spacing="1rem">
               <ButtonAction
                 fontFamily="Acme"
-                onClick={() => onAnswerSelected("secreto bueno", initTime)}
+                onClick={() => onAnswerSelected("Secreto bueno", initTime)}
               >
                 No Contarlo
               </ButtonAction>
               <ButtonAction
                 fontFamily="Acme"
-                onClick={() => onAnswerSelected("secreto malo", initTime)}
+                onClick={() => onAnswerSelected("Secreto malo", initTime)}
               >
                 ¡Contarlo!
               </ButtonAction>
               <ButtonAction
                 fontFamily="Acme"
-                onClick={() => onAnswerSelected("no lo se", initTime)}
+                onClick={() => onAnswerSelected("No lo se", initTime)}
               >
                 No lo sé
               </ButtonAction>

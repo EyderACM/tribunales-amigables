@@ -24,7 +24,8 @@ import ButtonAction from "components/atoms/ButtonAction/ButtonAction";
 
 interface IRegisterInput {
   email: string;
-  name: string;
+  first_name: string;
+  last_name: string;
   username: string;
   password: string;
   password_confirmation: string;
@@ -36,12 +37,13 @@ const Register = () => {
   const { callAlertToast, callSuccessToast } = useToast();
   const [, setUserToken] = useUserAuth();
   const { register, handleSubmit, errors } = useForm<IRegisterInput>();
-
+  console.log(errors);
   const onSubmit = async (data: IRegisterInput) => {
     console.log(data);
     const {
       email,
-      name,
+      first_name,
+      last_name,
       username,
       password,
       password_confirmation,
@@ -49,11 +51,12 @@ const Register = () => {
     } = data;
     const userFormData = {
       email,
-      name,
       username,
       password,
       password_confirmation,
       municipality,
+      first_name,
+      last_name,
     };
 
     try {
@@ -150,11 +153,21 @@ const Register = () => {
             >
               <Stack spacing="1rem">
                 <Heading as="p" fontSize="lg">
-                  Nombre completo
+                  Nombre
                 </Heading>
                 <Input
-                  name="name"
-                  placeholder="Nombre"
+                  name="first_name"
+                  placeholder="Juan"
+                  inputRef={register({ required: true })}
+                />
+              </Stack>
+              <Stack spacing="1rem">
+                <Heading as="p" fontSize="lg">
+                  Apellido
+                </Heading>
+                <Input
+                  name="last_name"
+                  placeholder="Perez"
                   inputRef={register({ required: true })}
                 />
               </Stack>
