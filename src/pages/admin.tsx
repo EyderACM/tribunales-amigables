@@ -25,12 +25,15 @@ import {
   ModalFooter,
   Button,
   Stack,
+  Tabs,
+  TabList,
+  Tab,
 } from "@chakra-ui/react";
 import { AnimatePresence, motion } from "framer-motion";
 
 const admin = () => {
   const router = useRouter();
-  const [{ token, isAdmin }] = useUserAuth();
+  const [{ token, isAdmin }, setUserToken] = useUserAuth();
   const [userList, setUserList] = useState();
   const [selectedUser, setSelectedUser] = useState(null);
   const [answers, setAnswers] = useState();
@@ -72,31 +75,36 @@ const admin = () => {
         ),
       }));
 
-      const downloadableAnswers = parsedAnswers.map(
-        ({ respuestas, ...rest }) => ({
-          ...rest,
-          ...(() => {
-            return Object.entries(respuestas).reduce(
-              (prev, curr) => ({
-                ...prev,
-                [curr[0]]: (curr[1] as any).reduce(
-                  (prev, curr, index) =>
-                    `${prev} ${index > 0 ? "," : ""} Respuesta ${
-                      index + 1
-                    }:  ${curr}`,
-                  ""
-                ),
-              }),
-              {}
-            );
-          })(),
-        })
-      );
+      const downloadableAnswers = data.map(({ games, user }) => ({
+        primerNombre: user.first_name,
+        apellido: user.last_name,
+        municipio: user.municipality,
+        correoElectronico: user.email,
+        ...(() =>
+          games.reduce(
+            (prev, curr, i) => ({
+              ...prev,
+              [`Juego numero ${i + 1}`]: `Fecha: ${dayjs(curr.play_date).format(
+                "DD/MM/YYYY"
+              )}, Respuestas: ${curr.answers.reduce(
+                (prevAnswer, { question }) =>
+                  prevAnswer.concat(`${question.answer},`),
+                ""
+              )}`,
+            }),
+            {}
+          ))(),
+      }));
+      console.log({ downloadableAnswers });
       setDownloadableAnswers(downloadableAnswers);
       setAnswers(parsedAnswers);
     };
     fetchAnswers();
   }, [token, isAdmin]);
+
+  const logoutUser = () => {
+    setUserToken({ token: undefined, isAdmin: false });
+  };
 
   return (
     <>
@@ -169,22 +177,43 @@ const admin = () => {
           h="80px"
         >
           <Text mt="8px" color="white" fontSize="40px">
-            Resultados
+            Respuestas
           </Text>
-          {/* <CsvDownload
-            style={{
-              color: "purple",
-              borderRadius: "10px",
-              fontSize: "14px",
-              fontWeight: "600",
-              height: "45px",
-              padding: "0px 10px",
-              backgroundColor: "white",
-            }}
-            data={downloadableAnswers}
-          >
-            Descargar respuestas
-          </CsvDownload> */}
+          <Flex>
+            <Button
+              color="purple"
+              borderRadius="10px"
+              height="45px"
+              padding="0px 10px"
+              backgroundColor="white"
+              mr="10px"
+              onClick={logoutUser}
+            >
+              Cerrar sesión
+            </Button>
+            <CsvDownload
+              style={{
+                color: "purple",
+                borderRadius: "10px",
+                fontSize: "14px",
+                fontWeight: "600",
+                height: "45px",
+                padding: "0px 10px",
+                backgroundColor: "white",
+              }}
+              data={downloadableAnswers}
+            >
+              Descargar respuestas
+            </CsvDownload>
+          </Flex>
+        </Flex>
+        <Flex justifyContent="center" alignItems="center" w="100%" mb="14px">
+          <Tabs variant="soft-rounded" colorScheme="purple">
+            <TabList>
+              <Tab>Secretos buenos y malos</Tab>
+              <Tab isDisabled>Tu cuerpo</Tab>
+            </TabList>
+          </Tabs>
         </Flex>
         <AnimatePresence exitBeforeEnter>
           {!answers ? (
@@ -218,7 +247,6 @@ const admin = () => {
                 <TableContainer
                   borderRadius="10px"
                   border="3px solid #6844bc"
-                  minH="800px"
                   w="100%"
                 >
                   <Table variant="striped" colorScheme="purple">
