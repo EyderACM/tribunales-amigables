@@ -6,32 +6,32 @@ const { apiUrl } = envConsts;
 
 export const secretsGameService = () => {
   const fetchQuestions = async () => {
-    const res = await axios.get(`${apiUrl}/questions/secrets`);
+    const res = await axios.post(`${apiUrl}/game/questions`, {
+      game_name: "Secretos buenos y secretos malos",
+    });
     const { data } = res;
     return data;
-  }
+  };
 
-  const saveUserAnswers = ({userAnswers, userToken}: ISaveUserAnswers) => {
+  const saveUserAnswers = ({ userAnswers, userToken }: ISaveUserAnswers) => {
     const headers = {
       "Content-Type": "application/json",
       Authorization: `Bearer ${userToken}`,
-    }
-
-
+    };
+    const parsedAnswers = {
+      answers: userAnswers,
+      game_name: "Secretos buenos y secretos malos",
+    };
     axios({
       method: "post",
-      url: `${apiUrl}/answers/secrets`,
-      data: userAnswers,
+      url: `${apiUrl}/game/answers`,
+      data: parsedAnswers,
       headers,
-    }).then((res) => {
-      console.log(res);
-    }).catch((err) => {
-      console.log(err);
-    })
-  }
+    });
+  };
 
   return {
     fetchQuestions,
     saveUserAnswers,
-  }
-}
+  };
+};

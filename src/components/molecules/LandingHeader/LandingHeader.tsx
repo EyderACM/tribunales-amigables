@@ -39,8 +39,8 @@ const LandingHeader = () => {
           src="/images/logo.png"
           alt="logo"
           quality={100}
-          width={154}
-          height={93}
+          width={94}
+          height={83}
         />
       </Link>
       <HStack

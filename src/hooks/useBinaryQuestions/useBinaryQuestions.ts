@@ -27,7 +27,11 @@ export const useBinaryQuestions = (
     setResults(initialResultsData);
   }, [questions]);
 
-  const saveAnswer = ({ questionIndex, answer, time }: IQuestionIndexAnswer) => {
+  const saveAnswer = ({
+    questionIndex,
+    answer,
+    time,
+  }: IQuestionIndexAnswer) => {
     const updatedQuestionsData = questions.map((question, currentIndex) => {
       if (currentIndex === questionIndex) {
         const answerWasCorrect = checkIfAnswerIsCorrect({
@@ -39,7 +43,7 @@ export const useBinaryQuestions = (
           ...question,
           isAnswered: true,
           answerWasCorrect,
-          time
+          time,
         };
       }
 
@@ -54,7 +58,7 @@ export const useBinaryQuestions = (
     answer,
   }: IQuestionIndexAnswer): boolean => {
     const question = questions[questionIndex];
-
+    console.log(answer, question.answer);
     if (question.answer === answer) {
       return true;
     }

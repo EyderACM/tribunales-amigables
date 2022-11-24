@@ -6,7 +6,7 @@ import "react-responsive-carousel/lib/styles/carousel.min.css";
 const LandingHero = () => {
   return (
     <Carousel showThumbs={false}>
-      {[...Array(2)].map((e, i) => (
+      {[...Array(1)].map((e, i) => (
         <Stack pos="relative" h="550px" justify="center" align="center">
           <Image
             src="images/carouselBackground.png"
